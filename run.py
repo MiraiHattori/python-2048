@@ -6,10 +6,10 @@ from build.game import exec_once
 from build.game import is_movable_up_left_down_right
 
 if __name__ == '__main__':
+    init_game()
     for i in range(100):
-        init_game()
         while True:
-            # 1手
+            # up, left, down, right
             movable = is_movable_up_left_down_right()
             if movable[0]:
                 board = exec_once("up")
