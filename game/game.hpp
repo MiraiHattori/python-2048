@@ -10,9 +10,16 @@ class Game
 public:
     explicit Game()
     {
-        Board::board = std::make_unique<Board::Board<ROW_SIZE, COL_SIZE>>();
+        this->init();
     }
-    std::array<int, COL_SIZE * ROW_SIZE> execOnce(std::string command)
+
+    void init()
+    {
+        Board::board = std::make_unique<Board::Board<ROW_SIZE, COL_SIZE>>();
+        Board::board->init();
+    }
+
+    void execOnce(std::string command)
     {
         using Board::board;
         bool to_stop = false;
@@ -60,7 +67,9 @@ public:
             board->quit();
         } else {
             std::cout << "command is " << command << ". game is over. is it typo?" << std::endl;
-            return std::array<int, COL_SIZE * ROW_SIZE>();
+            m_game_iteration++;
+            board->clear();
+            return;
         }
         // 選択された動作に基づいて実際に盤面を上下左右動かし、ターンや点数を更新する
         if (not board->move()) {
@@ -93,9 +102,7 @@ public:
         if (to_stop) {
             m_game_iteration++;
             board->clear();
-            return std::array<int, COL_SIZE * ROW_SIZE>();
         }
-        return board->pybind11Board();
     }
 
     void printResult()
