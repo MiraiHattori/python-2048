@@ -7,14 +7,18 @@ from build.game import get_board
 from build.game import exec_once
 
 from ai import move
+from ai import initialize_ai
+from ai import finalize_ai
 
 if __name__ == '__main__':
     init_game()
     for i in range(100):
         init_board()
+        initialize_ai()
         while True:
             exec_once(move())
             # up, left, down, right
             if all([elem == 0 for elem in get_board()]):
+                finalize_ai()
                 break
     print_result()

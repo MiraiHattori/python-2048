@@ -1,6 +1,12 @@
 from build.game import is_movable_up_left_down_right
 from build.game import get_board
 
+def initialize_ai():
+    pass
+
+def finalize_ai():
+    pass
+
 def move():
     movable = is_movable_up_left_down_right()
     board = get_board()
