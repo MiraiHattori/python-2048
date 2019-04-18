@@ -36,6 +36,18 @@ void execOnce(std::string command)
     game->execOnce(command);
 }
 
+int getScore()
+{
+    using Board::board;
+    return board->score();
+}
+
+int getTurn()
+{
+    using Board::board;
+    return board->turn();
+}
+
 // is movable
 std::array<bool, 4> isMovableUpLeftDownRight()
 {
@@ -55,5 +67,7 @@ PYBIND11_MODULE(game, m) {
     m.def("print_result", &printResult, "print the average");
     m.def("exec_once", &execOnce, "align: up down left right");
     m.def("get_board", &getBoard, "get board state");
+    m.def("get_score", &getScore, "get current score");
+    m.def("get_turn", &getTurn, "get current turn");
     m.def("is_movable_up_left_down_right", &isMovableUpLeftDownRight, "is movable up down left right");
 }
