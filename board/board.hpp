@@ -32,7 +32,7 @@ public:
 
     explicit Board()
     {
-        this->clear();
+        this->clearBoard();
     }
 
     const int& turn() const { return m_turn; }
@@ -53,15 +53,15 @@ public:
     void down() { m_next_manip = Manipulation::Down; }
     void right() { m_next_manip = Manipulation::Right; }
 
-    void clear()
+    void clearBoard()
     {
-        m_turn = 0;
-        m_score = 0;
         m_board_array = BoardArray();
     }
 
     void init()
     {
+        m_turn = 0;
+        m_score = 0;
         this->placeTwoOrFour();
         this->placeTwoOrFour();
         this->eagerMoveEvaluation();

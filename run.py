@@ -5,20 +5,31 @@ from build.game import init_board
 from build.game import print_result
 from build.game import get_board
 from build.game import exec_once
+from build.game import get_score
+from build.game import get_turn
 
-from ai import move
-from ai import initialize_ai
-from ai import finalize_ai
+from ai import AI
 
 if __name__ == '__main__':
     init_game()
-    for i in range(100):
+    scores = 0
+    turns = 0
+    interval = 1000
+    ai = AI()
+    i = -1
+    while True:
+        i += 1
+        ai.initialize()
         init_board()
-        initialize_ai()
+        if i % interval == interval - 1:
+            print("{} games average; score: {} turn: {}".format(interval, scores / interval, turns / interval))
+            scores = 0
+            turns = 0
         while True:
-            exec_once(move())
+            exec_once(ai.move())
             # up, left, down, right
             if all([elem == 0 for elem in get_board()]):
-                finalize_ai()
+                scores += get_score()
+                turns += get_turn()
+                ai.finalize()
                 break
-    print_result()
