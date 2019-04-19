@@ -68,7 +68,7 @@ public:
         } else {
             std::cout << "command is " << command << ". game is over. is it typo?" << std::endl;
             m_game_iteration++;
-            board->clear();
+            board->clearBoard();
             return;
         }
         // 選択された動作に基づいて実際に盤面を上下左右動かし、ターンや点数を更新する
@@ -101,7 +101,7 @@ public:
         board->eagerMoveEvaluation();
         if (to_stop) {
             m_game_iteration++;
-            board->clear();
+            board->clearBoard();
         }
     }
 
