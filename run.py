@@ -14,7 +14,7 @@ if __name__ == '__main__':
     init_game()
     scores = 0
     turns = 0
-    interval = 1000
+    interval = 100
     ai = AI()
     i = -1
     while True:
